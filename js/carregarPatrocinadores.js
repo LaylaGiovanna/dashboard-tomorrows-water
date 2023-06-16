@@ -4,7 +4,7 @@ import { patrocinadores, excluirPatrocinador } from "./api.js";
 let dados = await patrocinadores();
 console.log(dados)
 
-import { excluirPatrocinador } from "./api.js";
+// import { excluirPatrocinador } from "./api.js";
 
 const cardPatrocinador = (dados) => {
 

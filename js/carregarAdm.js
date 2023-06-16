@@ -1,6 +1,6 @@
 'use strict'
 
-import { adm } from "./api.js";
+import { adm, excluirAdministrador } from "./api.js";
 let dados = await adm();
 console.log(dados)
 
@@ -24,8 +24,17 @@ const cardAdm = (dados) => {
     cpf.textContent = "Senha: " + dados.senha;
   
     text_container.append(name, email, cpf);
+
+    const button = document.createElement('button')
+    button.classList.add('card__button')
+    button.textContent = "Excluir";
+
+    button.addEventListener('click', () => {
+      excluirAdministrador(dados.id); // Chama a função para excluir o produto passando o ID como parâmetro
+        card.remove(); // Remove o card do DOM após a exclusão
+    });
   
-    card.append(text_container);
+    card.append(text_container, button);
   
     return card;
   };

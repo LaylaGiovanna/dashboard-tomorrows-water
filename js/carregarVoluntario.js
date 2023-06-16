@@ -1,6 +1,6 @@
 'use strict'
 
-import { voluntarios } from "./api.js";
+import { voluntarios, excluirVoluntarios } from "./api.js";
 let dados = await voluntarios();
 console.log(dados)
 
@@ -40,8 +40,16 @@ const cardVoluntario = (dados) => {
 
     text_container.append(name, email, cpf, genero, data, telefone)
 
+    const button = document.createElement('button')
+    button.classList.add('card__button')
+    button.textContent = "Excluir";
 
-    card.append(text_container)
+    button.addEventListener('click', () => {
+      excluirVoluntarios(dados.id); // Chama a função para excluir o produto passando o ID como parâmetro
+        card.remove(); // Remove o card do DOM após a exclusão
+    });
+
+    card.append(text_container, button)
 
     return card
 }
