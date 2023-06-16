@@ -36,6 +36,30 @@ export const excluirProduto = async (produtoId) => {
     }
 };
 
+export const excluirPatrocinador = async (patrocinadorId) => {
+    const confirmacao = window.confirm('Tem certeza que deseja excluir o patrocinador?');
+
+    if (!confirmacao) {
+        return; // Se o usuário cancelar a exclusão, a função é interrompida
+    }
+
+    const url = `https://tomorrows-water.onrender.com/v1/tomorrows-water/patrocinador/${patrocinadorId}`;
+    const options = {
+        method: 'DELETE',
+    };
+
+    try {
+        const response = await fetch(url, options);
+        if (response.ok) {
+            console.log('Patrocinador excluído com sucesso!');
+        } else {
+            console.error('Erro ao excluir o patrocinador.');
+        }
+    } catch (error) {
+        console.error('Erro ao fazer a requisição DELETE:', error);
+    }
+};
+
 export const projetos = async () => {
    
     const url = `https://tomorrows-water.onrender.com/v1/tomorrows-water/projeto`
@@ -47,6 +71,30 @@ export const projetos = async () => {
         ...data
     }
 }
+
+export const excluirProjeto = async (projetoId) => {
+    const confirmacao = window.confirm('Tem certeza que deseja excluir o projeto?');
+
+    if (!confirmacao) {
+        return; // Se o usuário cancelar a exclusão, a função é interrompida
+    }
+
+    const url = `https://tomorrows-water.onrender.com/v1/tomorrows-water/projeto/${projetoId}`;
+    const options = {
+        method: 'DELETE',
+    };
+
+    try {
+        const response = await fetch(url, options);
+        if (response.ok) {
+            console.log('Produto excluído com sucesso!');
+        } else {
+            console.error('Erro ao excluir o produto.');
+        }
+    } catch (error) {
+        console.error('Erro ao fazer a requisição DELETE:', error);
+    }
+};
 
 export const excluirProjeto = async (projetoId) => {
     const confirmacao = window.confirm('Tem certeza que deseja excluir o projeto?');

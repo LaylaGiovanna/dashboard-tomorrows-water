@@ -1,8 +1,10 @@
 'use strict'
 
-import { patrocinadores } from "./api.js";
+import { patrocinadores, excluirPatrocinador } from "./api.js";
 let dados = await patrocinadores();
 console.log(dados)
+
+import { excluirPatrocinador } from "./api.js";
 
 const cardPatrocinador = (dados) => {
 
@@ -30,8 +32,17 @@ const cardPatrocinador = (dados) => {
     telefone.classList.add('card__telefone')
     telefone.textContent = "Telefone: " + dados.telefone;
 
+    const button = document.createElement('button')
+    button.classList.add('card__button')
+    button.textContent = "Excluir";
 
-    text_container.append(name, email, cnpj, telefone)
+    button.addEventListener('click', () => {
+        excluirPatrocinador(dados.id); // Chama a função para excluir o produto passando o ID como parâmetro
+        card.remove(); // Remove o card do DOM após a exclusão
+    });
+
+
+    text_container.append(name, email, cnpj, telefone, button)
 
 
     card.append(text_container)
